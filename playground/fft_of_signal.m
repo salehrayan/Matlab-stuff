@@ -1,3 +1,4 @@
+clc;clear;close all
 L=10;
 n=2048;
 Fs = n/L;
