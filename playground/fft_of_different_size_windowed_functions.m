@@ -1,10 +1,10 @@
 clc;clear;close all
 L=20;
 n=3048;
-Fs = n/L;
+Fs = n/(2*L);
 t=linspace(-L,L,n);
 
-signal = cos(2.*pi.*2.*t) + sin(2.*pi.*2.4.*t);
+signal = cos(2.*pi.*2.*t) + sin(2.*pi.*2.5.*t);
 rect_window = rectpuls(t,2);
 std = 0.45;
 gaussian_window = exp(-1/2 * (t/std).^2);
