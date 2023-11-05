@@ -11,10 +11,10 @@ t = linspace(-L, L , 5000);
 
 
 singal1_real = cos(2.*pi.*1.*t);
-singal2_real = cos(2.*pi.*12.*t);
+singal2_real = cos(2.*pi.*11.*t);
 
 signal1 = cos(2.*pi.*1.*n);
-signal2 = cos(2.*pi.*6.*n);
+signal2 = cos(2.*pi.*11.*n);
 
 
 fig1 = figure(1);
