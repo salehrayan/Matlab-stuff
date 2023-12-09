@@ -1,0 +1,160 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>report_4</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-11-29"><meta name="DC.source" content="report_4.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">clc;clear;close <span class="string">all</span>;
+
+b = [1 0 0 1 1 1 0 1 0 1 1 0];      <span class="comment">%&#1576;&#1740;&#1578; &#1607;&#1575;&#1740; &#1575;&#1585;&#1587;&#1575;&#1604;&#1740;</span>
+t = 0:0.01:1;   <span class="comment">%&#1586;&#1605;&#1575;&#1606; &#1740;&#1705; &#1662;&#1575;&#1604;&#1587;</span>
+T = 0:0.01:length(b);   <span class="comment">%&#1586;&#1605;&#1575;&#1606; &#1705;&#1604; &#1587;&#1740;&#1711;&#1606;&#1575;&#1604;</span>
+Signal = [];        <span class="comment">%&#1575;&#1740;&#1580;&#1575;&#1583; &#1605;&#1578;&#1594;&#1740;&#1585; &#1582;&#1575;&#1604;&#1740; &#1576;&#1585;&#1575;&#1740; &#1580;&#1605;&#1593; &#1705;&#1585;&#1583;&#1606; &#1587;&#1740;&#1711;&#1606;&#1575;&#1604; &#1607;&#1575; &#1583;&#1585; &#1570;&#1740;&#1606;&#1583;&#1607;</span>
+Fc = 5;     <span class="comment">%&#1601;&#1585;&#1705;&#1575;&#1606;&#1587; &#1581;&#1575;&#1605;&#1604;</span>
+
+<span class="keyword">for</span> i=1:length(b)    <span class="comment">%&#1575;&#1606;&#1740;&#1605;&#1740;&#1588;&#1606; &#1605;&#1583;&#1608;&#1604;&#1575;&#1587;&#1740;&#1608;&#1606;</span>
+    subplot(2,1,1)
+    stairs(0:length(b), [b b(end)], <span class="string">'LineWidth'</span>, 1.5)      <span class="comment">%&#1578;&#1575;&#1576;&#1593; &#1576;&#1585;&#1575;&#1740; &#1705;&#1588;&#1740;&#1583;&#1606; &#1662;&#1604;&#1607;</span>
+    title(<span class="string">'Signal bits'</span>)
+    ylim([-1.5 1.5])        <span class="comment">%&#1605;&#1581;&#1583;&#1608;&#1583; &#1705;&#1585;&#1583;&#1606; &#1605;&#1581;&#1608;&#1585; &#1593;&#1605;&#1608;&#1583;&#1740;</span>
+    xlim([0 length(b)])     <span class="comment">%&#1605;&#1581;&#1583;&#1608;&#1583; &#1705;&#1585;&#1583;&#1606; &#1605;&#1581;&#1608;&#1585; &#1575;&#1601;&#1602;&#1740;</span>
+
+    s= sin(2.*pi.*Fc.*t + b(i).*pi)./(sum(abs(sin(2.*pi.*Fc.*t + b(i).*pi)).^2));       <span class="comment">%&#1587;&#1740;&#1711;&#1606;&#1575;&#1604; &#1605;&#1583;&#1608;&#1604;&#1607; &#1588;&#1583;&#1607; &#1583;&#1585; &#1586;&#1605;&#1575;&#1606; &#1740;&#1705; &#1662;&#1575;&#1604;&#1587;</span>
+    subplot(2,1,2)
+    plot(t + (i-1), s, LineWidth=1.2)
+    title(<span class="string">'Modulated bit'</span>)
+    xlim([0 length(b)])
+    ylim([-0.05 0.05])
+
+    drawnow     <span class="comment">%&#1705;&#1588;&#1740;&#1583;&#1606; &#1601;&#1608;&#1585;&#1740; &#1662;&#1604;&#1575;&#1578; &#1585;&#1608;&#1740; &#1601;&#1740;&#1711;&#1585;</span>
+    pause(0.5)      <span class="comment">%&#1589;&#1576;&#1585; 0.5 &#1579;&#1575;&#1606;&#1740;&#1607; &#1575;&#1740;</span>
+
+    Signal = cat(2, Signal, s);     <span class="comment">%&#1580;&#1605;&#1593; &#1705;&#1585;&#1583;&#1606; &#1587;&#1740;&#1711;&#1606;&#1575;&#1604;&#1607;&#1575;&#1740; &#1605;&#1583;&#1608;&#1604;&#1607; &#1588;&#1583;&#1607; &#1583;&#1585; &#1586;&#1605;&#1575;&#1606; &#1740;&#1705; &#1662;&#1575;&#1604;&#1587;</span>
+<span class="keyword">end</span>
+close   <span class="comment">%&#1576;&#1587;&#1578;&#1606; &#1601;&#1740;&#1711;&#1585;</span>
+figure   <span class="comment">%&#1576;&#1575;&#1586; &#1705;&#1585;&#1583;&#1606; &#1601;&#1740;&#1711;&#1585;</span>
+
+<span class="comment">%&#1606;&#1605;&#1575;&#1740;&#1588; &#1705;&#1604; &#1587;&#1740;&#1711;&#1606;&#1575;&#1604; &#1605;&#1583;&#1608;&#1604;&#1607; &#1588;&#1583;&#1607;</span>
+subplot(2,1,1)
+stairs(0:length(b), [b b(end)], <span class="string">'LineWidth'</span>, 1.5)
+title(<span class="string">'Signal bits'</span>)
+ylim([-1.5 1.5])
+xlim([0 length(b)])
+
+subplot(2,1,2)
+plot(T, Signal(1:end-(length(b)-1)), <span class="string">'LineWidth'</span>,1.5)
+title(<span class="string">'Full modulated signal'</span>)
+xlim([0 length(b)])
+ylim([-0.05 0.05])
+</pre><img vspace="5" hspace="5" src="report_4_01.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+clc;clear;close all;
+
+b = [1 0 0 1 1 1 0 1 0 1 1 0];      %بیت های ارسالی
+t = 0:0.01:1;   %زمان یک پالس
+T = 0:0.01:length(b);   %زمان کل سیگنال
+Signal = [];        %ایجاد متغیر خالی برای جمع کردن سیگنال ها در آینده
+Fc = 5;     %فرکانس حامل
+
+for i=1:length(b)    %انیمیشن مدولاسیون
+    subplot(2,1,1)
+    stairs(0:length(b), [b b(end)], 'LineWidth', 1.5)      %تابع برای کشیدن پله
+    title('Signal bits')
+    ylim([-1.5 1.5])        %محدود کردن محور عمودی
+    xlim([0 length(b)])     %محدود کردن محور افقی
+
+    s= sin(2.*pi.*Fc.*t + b(i).*pi)./(sum(abs(sin(2.*pi.*Fc.*t + b(i).*pi)).^2));       %سیگنال مدوله شده در زمان یک پالس
+    subplot(2,1,2)
+    plot(t + (i-1), s, LineWidth=1.2)
+    title('Modulated bit')
+    xlim([0 length(b)])
+    ylim([-0.05 0.05])
+
+    drawnow     %کشیدن فوری پلات روی فیگر
+    pause(0.5)      %صبر 0.5 ثانیه ای
+
+    Signal = cat(2, Signal, s);     %جمع کردن سیگنالهای مدوله شده در زمان یک پالس
+end
+close   %بستن فیگر
+figure   %باز کردن فیگر
+
+%نمایش کل سیگنال مدوله شده
+subplot(2,1,1)
+stairs(0:length(b), [b b(end)], 'LineWidth', 1.5)
+title('Signal bits')
+ylim([-1.5 1.5])
+xlim([0 length(b)])
+
+subplot(2,1,2)
+plot(T, Signal(1:end-(length(b)-1)), 'LineWidth',1.5)
+title('Full modulated signal')
+xlim([0 length(b)])
+ylim([-0.05 0.05])
+
+
+
+##### SOURCE END #####
+--></body></html>
