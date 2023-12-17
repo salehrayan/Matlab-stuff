@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>report_6</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-12-16"><meta name="DC.source" content="report_6.m"><style type="text/css">
+      --><title>report_6</title><meta name="generator" content="MATLAB 9.11"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-12-17"><meta name="DC.source" content="report_6.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -68,7 +68,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
   </style></head><body><div class="content"><pre class="codeinput">clc;clear;close <span class="string">all</span>;
-snr = -4:0.1:14;
+snr = -4:0.5:14;
 psk_ser(snr, 6)
 
 
@@ -82,21 +82,21 @@ psk_ser(snr, 6)
             gamma_b = snr_lin;
 
             SER = erfc(sqrt(gamma_b))./2;
-            semilogy(snr_db, SER, <span class="string">'DisplayName'</span>,<span class="string">'B-PSK'</span>, LineWidth=1.5)
+            semilogy(snr_db, SER, <span class="string">'DisplayName'</span>,<span class="string">'B-PSK'</span>, LineWidth=1.5, LineStyle=<span class="string">'-'</span>)
             hold <span class="string">on</span>
         <span class="keyword">elseif</span> M==4   <span class="comment">%QPSK%</span>
             snr_lin = 10.^(snr_db/10);
             gamma_b = snr_lin;
 
             SER = erfc(sqrt(gamma_b)) - (erfc(gamma_b)./2).^2;
-            semilogy(snr_db, SER, <span class="string">'DisplayName'</span>,<span class="string">'Q-PSK'</span>, LineWidth=1.5)
+            semilogy(snr_db, SER, <span class="string">'DisplayName'</span>,<span class="string">'Q-PSK'</span>, LineWidth=1.5, LineStyle=<span class="string">'--'</span>)
             hold <span class="string">on</span>
         <span class="keyword">elseif</span> M&gt;4    <span class="comment">%MPSK%</span>
             snr_lin = 10.^(snr_db/10);
             gamma_s = log2(M).*snr_lin;
 
             SER = erfc(sin(pi./M).*sqrt(gamma_s));
-            semilogy(snr_db, SER, <span class="string">'DisplayName'</span>,num2str(M)+<span class="string">"-PSK"</span>, LineWidth=1.5)
+            semilogy(snr_db, SER, <span class="string">':o'</span>, <span class="string">'MarkerSize'</span>, 5, <span class="string">'DisplayName'</span>,num2str(M)+<span class="string">"-PSK"</span>, LineWidth=1.5)
             hold <span class="string">on</span>
         <span class="keyword">end</span>
         legend(Location=<span class="string">'southwest'</span>)
@@ -107,7 +107,7 @@ psk_ser(snr, 6)
 </pre><img vspace="5" hspace="5" src="report_6_01.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 clc;clear;close all;
-snr = -4:0.1:14;
+snr = -4:0.5:14;
 psk_ser(snr, 6)
 
 
@@ -121,21 +121,21 @@ function psk_ser(snr_db, n)
             gamma_b = snr_lin;
 
             SER = erfc(sqrt(gamma_b))./2;
-            semilogy(snr_db, SER, 'DisplayName','B-PSK', LineWidth=1.5)
+            semilogy(snr_db, SER, 'DisplayName','B-PSK', LineWidth=1.5, LineStyle='-')
             hold on
         elseif M==4   %QPSK%
             snr_lin = 10.^(snr_db/10);
             gamma_b = snr_lin;
 
             SER = erfc(sqrt(gamma_b)) - (erfc(gamma_b)./2).^2;
-            semilogy(snr_db, SER, 'DisplayName','Q-PSK', LineWidth=1.5)
+            semilogy(snr_db, SER, 'DisplayName','Q-PSK', LineWidth=1.5, LineStyle='REPLACE_WITH_DASH_DASH')
             hold on
         elseif M>4    %MPSK%
             snr_lin = 10.^(snr_db/10);
             gamma_s = log2(M).*snr_lin;
 
             SER = erfc(sin(pi./M).*sqrt(gamma_s));
-            semilogy(snr_db, SER, 'DisplayName',num2str(M)+"-PSK", LineWidth=1.5)
+            semilogy(snr_db, SER, ':o', 'MarkerSize', 5, 'DisplayName',num2str(M)+"-PSK", LineWidth=1.5)
             hold on
         end
         legend(Location='southwest')
