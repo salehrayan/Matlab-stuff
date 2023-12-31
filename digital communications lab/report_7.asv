@@ -1,0 +1,44 @@
+clc;clear;close all;
+syms q
+
+gamma_s = -4:0.5:14;
+gamma_lin = 10.^(gamma_s./10);
+
+M = 2;
+for i=1:length(gamma_lin)
+    f(q) = (1./2.*erfc(-q - sqrt(gamma_lin(i).*2))).^(M-1)./(sqrt(2.*pi)).*exp(-q.^2./2);
+    SER(i) = 1- int(f, q, -inf, inf);
+end
+semilogy(gamma_s, SER, 'DisplayName', 'B-FSK', LineWidth=1.5, Marker='s') 
+hold on
+
+M = 4;
+for i=1:length(gamma_lin)
+    f(q) = (1./2.*erfc(-q - sqrt(gamma_lin(i).*2))).^(M-1)./(sqrt(2.*pi)).*exp(-q.^2./2);
+    SER(i) = 1- int(f, q, -inf, inf);
+end
+semilogy(gamma_s, SER, 'DisplayName', 'Q-FSK', LineWidth=1.5, Marker='x')
+hold on
+
+M = 8;
+for i=1:length(gamma_lin)
+    f(q) = (1./2.*erfc(-q - sqrt(gamma_lin(i).*2))).^(M-1)./(sqrt(2.*pi)).*exp(-q.^2./2);
+    SER(i) = 1- int(f, q, -inf, inf);
+end
+semilogy(gamma_s, SER, 'DisplayName', '8-FSK', LineWidth=1.5, Marker='v')
+hold on
+
+M = 16;
+for i=1:length(gamma_lin)
+    f(q) = (1./2.*erfc(-q - sqrt(gamma_lin(i).*2))).^(M-1)./(sqrt(2.*pi)).*exp(-q.^2./2);
+    SER(i) = 1- int(f, q, -inf, inf);
+end
+semilogy(gamma_s, SER, 'DisplayName', '16-FSK', LineWidth=1.5, Marker='p')
+hold on
+ylim([10.^(-6) 1])
+ylabel('SER')
+xlabel()
+
+legend('Location','southwest')
+
+
