@@ -14,6 +14,8 @@ result = zeros(1, len_output);
 
 
 fig1 = figure;
+
+
 fig1.Position(1:2) = [575 50];
 plot(conv(x,h_n), LineWidth=2)
 xlim([1 len_output])
