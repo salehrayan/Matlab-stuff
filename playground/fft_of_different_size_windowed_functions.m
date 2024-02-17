@@ -6,7 +6,7 @@ t=linspace(-L,L,n);
 
 signal = cos(2.*pi.*2.*t) + sin(2.*pi.*2.5.*t);
 rect_window = rectpuls(t,2);
-std = 0.45;
+std = 0.40;
 gaussian_window = exp(-1/2 * (t/std).^2);
 
 fourier_main = fft(signal);
@@ -39,6 +39,7 @@ subplot(3,1,1)
 p2 = plot(t,gaussian_window, t, signal);
 p2(1).LineWidth = 2;
 xlim([-2,2]);
+
 
 subplot(3,1,2)
 plot(f,abs(fftshift(fourier_main))/max(abs(fftshift(fourier_main))),...
