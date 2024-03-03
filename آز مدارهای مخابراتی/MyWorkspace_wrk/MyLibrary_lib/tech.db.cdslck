@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      ASUS
+HostName                       LAPTOP-CN78JV63
+ProcessIdentifier              3060
+ProcessCreationTime_UTC        1709472621
+ProcessCreationTime_Readable   Sun Mar  3 17:00:21 2024 Iran Standard Time
+AppIdentifier                  OA File System Design Manager
+OSType                         win32
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         E:\github\Matlab\آز مدارهای مخابراتی\MyWorkspace_wrk\MyLibrary_lib\tech.db.cdslck
+TimeEditLocked                 Sun Mar  3 17:03:13 2024 Iran Standard Time
